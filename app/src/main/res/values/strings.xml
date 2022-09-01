@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Siakap.my</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="location">
+        <item>PPP</item>
+        <item>FTMK</item>
+        <item>FKE</item>
+    </string-array>
+
+    <string-array name="mainLocation">
+        <item>UTeM</item>
+        <item>MMHE</item>
+    </string-array>
+</resources>
