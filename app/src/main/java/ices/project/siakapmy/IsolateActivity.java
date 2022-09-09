@@ -51,6 +51,11 @@ public class IsolateActivity extends AppCompatActivity {
                         overridePendingTransition(0,0);
                         return true;
 
+                    case R.id.report:
+                        startActivity(new Intent(getApplicationContext(),ReportActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
+
                     case R.id.isolate:
                         return true;
 

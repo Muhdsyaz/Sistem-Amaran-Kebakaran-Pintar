@@ -88,6 +88,11 @@ public class HistoryActivity extends AppCompatActivity {
                     case R.id.history:
                         return true;
 
+                    case R.id.report:
+                        startActivity(new Intent(getApplicationContext(),ReportActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
+
                     case R.id.isolate:
                         startActivity(new Intent(getApplicationContext(),IsolateActivity.class));
                         overridePendingTransition(0,0);

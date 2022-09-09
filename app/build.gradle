@@ -50,4 +50,7 @@ dependencies {
 
     // for rtsp video stream
     implementation 'org.videolan.android:libvlc-all:3.4.4'
+
+    // for chart implementation
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 }

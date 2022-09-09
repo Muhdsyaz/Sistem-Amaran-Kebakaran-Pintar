@@ -12,6 +12,11 @@
         android:icon="@drawable/ic_history"/>
 
     <item
+        android:id="@+id/report"
+        android:title="Report"
+        android:icon="@drawable/ic_barchart"/>
+
+    <item
         android:id="@+id/dashboard"
         android:title="Dashboard"
         android:icon="@drawable/ic_dashboard"/>

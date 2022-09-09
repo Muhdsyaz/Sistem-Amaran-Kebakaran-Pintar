@@ -49,8 +49,8 @@ public class ProfileActivity extends AppCompatActivity {
         String email = prefs.getString("email","");
         String password = prefs.getString("password","");
 
-        tvEmail.setText("Email: " + email);
-        tvPassword.setText("Password: " + password);
+        tvEmail.setText(email);
+        tvPassword.setText(password);
 
         // declare layout
         layoutProfile = findViewById(R.id.layoutProfile);
@@ -74,6 +74,11 @@ public class ProfileActivity extends AppCompatActivity {
 
                     case R.id.history:
                         startActivity(new Intent(getApplicationContext(),HistoryActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.report:
+                        startActivity(new Intent(getApplicationContext(),ReportActivity.class));
                         overridePendingTransition(0,0);
                         return true;
 

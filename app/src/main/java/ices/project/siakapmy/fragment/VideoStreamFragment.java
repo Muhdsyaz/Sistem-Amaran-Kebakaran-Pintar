@@ -33,10 +33,10 @@ import ices.project.siakapmy.R;
 public class VideoStreamFragment extends Fragment{
 
     private LibVLC libVlc;
-    private MediaPlayer mediaPlayer1, mediaPlayer2;
-    private VLCVideoLayout videoLayout1, videoLayout2;
+    private MediaPlayer mediaPlayer1;
+    private VLCVideoLayout videoLayout1;
 
-    ImageView ivPlay1, ivPlay2;
+    ImageView ivPlay1;
 
     private static final String url = "rtsp://wowzaec2demo.streamlock.net/vod/mp4:BigBuckBunny_115k.mp4";
 
@@ -48,12 +48,9 @@ public class VideoStreamFragment extends Fragment{
 
         libVlc = new LibVLC(getContext());
         mediaPlayer1 = new MediaPlayer(libVlc);
-        mediaPlayer2 = new MediaPlayer(libVlc);
         videoLayout1 = view.findViewById(R.id.videoLayout1);
-        videoLayout2 = view.findViewById(R.id.videoLayout2);
 
         ivPlay1 = view.findViewById(R.id.ivPlay1);
-        ivPlay2 = view.findViewById(R.id.ivPlay2);
 
         return view;
     }
@@ -64,7 +61,6 @@ public class VideoStreamFragment extends Fragment{
         super.onStart();
 
         mediaPlayer1.attachViews(videoLayout1, null, false, false);
-        mediaPlayer2.attachViews(videoLayout2, null, false, false);
 
         Media media = new Media(libVlc, Uri.parse(url));
         media.setHWDecoderEnabled(true, false);
@@ -101,37 +97,6 @@ public class VideoStreamFragment extends Fragment{
             }
         });
 
-        ivPlay2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                mediaPlayer2.setMedia(media);
-                media.release();
-
-                ivPlay2.setImageResource(R.drawable.ic_pause);
-                mediaPlayer2.play();
-
-
-                ivPlay2.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-
-                        ivPlay2.setImageResource(R.drawable.ic_play);
-                        mediaPlayer2.pause();
-
-                        String check = new Boolean(!mediaPlayer2.isPlaying()).toString();
-
-                        Log.e("Check", check);
-
-                        if(!mediaPlayer2.isPlaying()){
-                            ivPlay2.setImageResource(R.drawable.ic_pause);
-                            mediaPlayer2.play();
-                        }
-                    }
-                });
-            }
-        });
-
     }
 
     @Override
@@ -143,9 +108,6 @@ public class VideoStreamFragment extends Fragment{
         mediaPlayer1.stop();
         mediaPlayer1.detachViews();
 
-        ivPlay2.setImageResource(R.drawable.ic_play);
-        mediaPlayer2.stop();
-        mediaPlayer2.detachViews();
     }
 
     @Override
@@ -154,7 +116,6 @@ public class VideoStreamFragment extends Fragment{
         super.onDestroy();
 
         mediaPlayer1.release();
-        mediaPlayer2.release();
         libVlc.release();
     }
 }

@@ -38,6 +38,7 @@
             <ImageView
                 android:layout_width="230dp"
                 android:layout_height="140dp"
+                android:src="@mipmap/ic_logo_siakap_foreground"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp" />
 

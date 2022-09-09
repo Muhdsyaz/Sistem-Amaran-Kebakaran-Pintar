@@ -8,4 +8,9 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="light_blue">#00A8EB</color>
+
+    //siakap color
+    <color name="flush_mahogany">#cb3c3c</color>
+    <color name="tundora">#444444</color>
+    <color name="swiss_coffee">#d3cece</color>
 </resources>
