@@ -3,6 +3,7 @@ package ices.project.siakapmy;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.lifecycle.ViewModelProviders;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -11,14 +12,27 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkResponse;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import net.steamcrafted.materialiconlib.MaterialIconView;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import ices.project.siakapmy.utility.NetworkChangeListener;
 
@@ -29,6 +43,10 @@ public class ProfileActivity extends AppCompatActivity {
     ConstraintLayout layoutProfile;
     BottomNavigationView bottomNav;
     TextView tvLogout, tvEmail, tvPassword;
+
+    String username, random_password;
+
+    private AppViewModel viewmodal;
 
     NetworkChangeListener networkChangeListener = new NetworkChangeListener();
 
@@ -45,12 +63,39 @@ public class ProfileActivity extends AppCompatActivity {
         tvPassword = findViewById(R.id.tvPassword);
         tvLogout = findViewById(R.id.tvLogout);
 
-        SharedPreferences prefs = getSharedPreferences("UserPreferences", MODE_PRIVATE);
-        String email = prefs.getString("email","");
-        String password = prefs.getString("password","");
+        SharedPreferences prefs = getSharedPreferences("UserLogin", MODE_PRIVATE);
 
-        tvEmail.setText(email);
-        tvPassword.setText(password);
+        username = prefs.getString("username",null);
+        tvEmail.setText(username);
+        Log.e("email", username);
+
+        random_password = prefs.getString("sessionid",null);
+        tvPassword.setText(random_password);
+        Log.e("password", random_password);
+//        String password = prefs.getString("password","");
+
+        // passing a data from view modal.
+        viewmodal = ViewModelProviders.of(this).get(AppViewModel.class);
+
+        // below line is use to get all the courses from view modal.
+//        viewmodal.getAllUsers().observe(this, new Observer<List<UserModel>>() {
+//            @Override
+//            public void onChanged(List<UserModel> models) {
+//                // when the data is changed in our models we are
+//                // adding that list to our adapter class.
+//
+//                for(UserModel model : models) {
+//                    email = model.getUsername();
+//                    password = model.getPasswordhash();
+//
+//                    Log.e("Test data ", "Id: " + model.getId() + " Email: " + model.getUsername() + " Password: " + model.getPasswordhash());
+//                }
+//                tvEmail.setText(email);
+//                tvPassword.setText(password);
+//            }
+//        });
+
+
 
         // declare layout
         layoutProfile = findViewById(R.id.layoutProfile);
@@ -128,6 +173,14 @@ public class ProfileActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int id) {
                         //Action for "Logout".
                         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+
+                        viewmodal.deleteAllUsers();
+
+
+                        SharedPreferences.Editor editor = getSharedPreferences("UserLogin", MODE_PRIVATE).edit();
+                        editor.clear();
+                        editor.commit();
+
                         startActivity(intent);
 
                     }
@@ -146,12 +199,9 @@ public class ProfileActivity extends AppCompatActivity {
                 alert.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(android.R.color.holo_red_light));
                 alert.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(getResources().getColor(R.color.black));
 
-                SharedPreferences.Editor editor = getSharedPreferences("UserPreferences", MODE_PRIVATE).edit();
-                editor.clear();
-                editor.commit();
-
             }
         });
+
     }
 
     @Override

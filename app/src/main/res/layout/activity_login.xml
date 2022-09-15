@@ -15,7 +15,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="LOG IN"
+            android:text=""
             android:textAlignment="center"
 
             android:padding="20dp" />
@@ -115,89 +115,6 @@
                 android:textAlignment="center"
                 android:layout_marginRight="20dp"
                 android:layout_marginLeft="20dp"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/layoutResetPassword"
-            android:layout_width="360dp"
-            android:layout_height="wrap_content"
-            android:background="@color/black"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.408"
-            android:visibility="invisible"
-            android:orientation="vertical"
-            android:padding="20dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Please enter your email to reset password."
-                android:layout_gravity="center"
-                android:textColor="@color/white"
-                android:textSize="15dp" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_gravity="center"
-                app:hintTextColor="@color/black"
-                app:boxBackgroundColor="@color/white"
-                app:boxStrokeColor="@color/black">
-
-                <EditText
-                    android:id="@+id/etEmailReset"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp"
-                    android:hint="Email"/>
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp">
-
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"/>
-
-                <Button
-                    android:id="@+id/btCancel"
-                    android:layout_width="120dp"
-                    android:layout_height="40dp"
-                    android:text="Cancel"
-                    android:textColor="@color/black"
-                    app:backgroundTint="@color/white"/>
-
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"/>
-
-                <Button
-                    android:id="@+id/btSubmit"
-                    android:layout_width="120dp"
-                    android:layout_height="40dp"
-                    android:text="Submit"
-                    android:textColor="@color/black"
-                    app:backgroundTint="@color/white"/>
-
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"/>
-
-            </LinearLayout>
 
         </LinearLayout>
 
